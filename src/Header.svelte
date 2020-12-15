@@ -35,5 +35,5 @@
       target="_blank"
       rel="noopener noreferrer">Wut?</a>)
   </p>
-  <img src="/logo.svg" alt="Obliviate logo" width="48" height="48" />
+  <img src="logo.svg" alt="Obliviate logo" width="48" height="48" />
 </header>
