@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  build-and-publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -20,11 +20,6 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: npm ci
       - run: npm run build
-
-  publish:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
       - name: GitHub Pages
         # You may pin to the exact commit or the version.
         # uses: crazy-max/ghaction-github-pages@1510b11c0c2f843eafb8ff41b3da8c467c8d4a9f
