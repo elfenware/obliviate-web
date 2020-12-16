@@ -1,7 +1,7 @@
 <script>
   import copy from "copy-text-to-clipboard";
   import pbkdf2Hmac from "pbkdf2-hmac";
-import Footer from "./Footer.svelte";
+  import Footer from "./Footer.svelte";
   import Header from "./Header.svelte";
 
   let site = "";
@@ -155,12 +155,6 @@ import Footer from "./Footer.svelte";
   button.toggle,
   button.info {
     grid-column: 3;
-    width: min-content;
-    margin: 0;
-    padding: 0.25em;
-    background: transparent;
-    border: none;
-    font-size: large;
   }
 
   .derive-btn {
