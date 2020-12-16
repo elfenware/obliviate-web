@@ -182,7 +182,7 @@ import Footer from "./Footer.svelte";
   <article>
     <label for="site">Site:</label>
     <input type="text" id="site" placeholder="GitHub" bind:value={site} />
-    <button class="info">
+    <button class="info" tabindex="-1">
       <i
         class="ri-information-line"
         title="Site is not case-sensitive. “GitHub” equals “github”."
