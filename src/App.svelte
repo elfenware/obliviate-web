@@ -196,7 +196,7 @@ import Footer from "./Footer.svelte";
       id="cipher"
       placeholder="correct horse battery staple"
       value={cipher}
-      on:change={(e) => (cipher = e.target.value)} />
+      on:input={(e) => (cipher = e.target.value)} />
     <button
       class="toggle"
       disabled={!cipher}
