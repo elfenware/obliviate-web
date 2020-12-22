@@ -33,3 +33,7 @@ Every time you want to run the development server, run
 ```shell
 npm run dev
 ```
+
+## Credits
+
+- [dotcypress/password](https://github.com/dotcypress/password) for the original idea
