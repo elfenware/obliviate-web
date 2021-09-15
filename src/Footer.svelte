@@ -15,13 +15,11 @@
 
 <footer>
   <p>
-    Using Linux?
     <a
       href="https://appcenter.elementary.io/com.github.elfenware.obliviate/"
       target="_blank"
-      rel="noopener noreferrer">Get the app.</a>
-  </p>
-  <p>
+      rel="noopener noreferrer">Linux app</a>
+    &middot;
     <a
       href="https://github.com/elfenware/obliviate-web"
       target="_blank"
