@@ -15,9 +15,9 @@
 
 <footer>
   <p>
-    Using elementary OS?
+    Using Linux?
     <a
-      href="https://github.com/elfenware/obliviate"
+      href="https://appcenter.elementary.io/com.github.elfenware.obliviate/"
       target="_blank"
       rel="noopener noreferrer">Get the app.</a>
   </p>
