@@ -188,7 +188,7 @@
       id="site"
       placeholder="GitHub"
       bind:value={site}
-      on:input={() => handleDerive()} />
+      on:input={handleDerive} />
 
     <button class="info" tabindex="-1">
       <i
