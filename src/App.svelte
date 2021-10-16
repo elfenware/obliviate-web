@@ -164,10 +164,6 @@
     grid-column: 3;
   }
 
-  .derive-btn {
-    margin-bottom: 2em;
-  }
-
   .derived {
     background: transparent;
     border: none;
