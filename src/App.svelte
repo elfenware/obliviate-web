@@ -100,15 +100,22 @@
   ];
 
   async function handleDerive() {
+    if (!site || !cipher) {
+      derivedPassword = "";
+      return;
+    }
+
     const derivedBuffer = await pbkdf2Hmac(
       cipher,
       site.toLowerCase(),
       10000,
       16
     );
+
     const indices = new Uint8Array(derivedBuffer).map(
       (byte) => byte % allowedCharacters.length
     );
+
     derivedPassword = Array.from(indices)
       .map((index) => allowedCharacters[index % allowedCharacters.length])
       .join("");
@@ -175,7 +182,14 @@
   <Header />
   <article>
     <label for="site">Site:</label>
-    <input type="text" id="site" placeholder="GitHub" bind:value={site} />
+
+    <input
+      type="text"
+      id="site"
+      placeholder="GitHub"
+      bind:value={site}
+      on:input={() => handleDerive()} />
+
     <button class="info" tabindex="-1">
       <i
         class="ri-information-line"
@@ -184,13 +198,18 @@
     </button>
 
     <label for="cipher">Cipher key:</label>
+
     <!-- Svelte won't allow bind:value when type is dynamic. -->
     <input
       type={showCipher ? 'text' : 'password'}
       id="cipher"
       placeholder="correct horse battery staple"
       value={cipher}
-      on:input={(e) => (cipher = e.target.value)} />
+      on:input={(e) => {
+        cipher = e.target.value;
+        handleDerive();
+      }} />
+
     <button
       class="toggle"
       disabled={!cipher}
@@ -201,20 +220,15 @@
         aria-label="Show/hide cipher key" />
     </button>
 
-    <input
-      type="submit"
-      class="derive-btn"
-      value="Derive Password"
-      disabled={!site || !cipher}
-      on:click={handleDerive} />
-
     <label for="derived-password">Password:</label>
+
     <input
       disabled
       type={showDerivedPassword ? 'text' : 'password'}
       id="derived-password"
       value={derivedPassword}
       class="derived" />
+
     <button
       class="toggle"
       disabled={!derivedPassword}
