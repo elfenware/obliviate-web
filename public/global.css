@@ -1,3 +1,35 @@
+:root {
+  --bg-color: #fafafa;
+  --fg-color: #333;
+  --accent-color: #715344;
+  --accent-color-dark: #3d211b;
+  --input-bg-color: white;
+  --input-fg-color: #333;
+  --button-bg: linear-gradient(
+    to bottom,
+    transparent,
+    transparent 50%,
+    rgba(0 0 0 0.04)
+  );
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #1a1a1a;
+    --fg-color: #d4d4d4;
+    --accent-color: #a3907c;
+    --accent-color-dark: #8a715e;
+    --input-bg-color: #4d4d4d;
+    --input-fg-color: white;
+    --button-bg: linear-gradient(
+      to bottom,
+      rgba(51, 51, 51, 1),
+      rgba(51, 51, 51, 1) 50%,
+      rgba(51, 51, 51, 0.96)
+    );
+  }
+}
+
 html,
 body {
   position: relative;
@@ -6,8 +38,8 @@ body {
 }
 
 body {
-  background: #fafafa;
-  color: #333;
+  background: var(--bg-color);
+  color: var(--fg-color);
   margin: 0;
   box-sizing: border-box;
   font-family: "Inter", sans-serif;
@@ -15,15 +47,7 @@ body {
 }
 
 a {
-  color: #715344;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-a:visited {
-  color: #3d211b;
+  color: var(--accent-color);
 }
 
 label {
@@ -46,12 +70,12 @@ textarea {
 
 input[type="text"],
 input[type="password"] {
-  background-color: white;
+  background-color: var(--input-bg-color);
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 3px;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
   padding: 6px;
-  color: #333;
+  color: var(--input-fg-color);
 }
 
 input:active,
@@ -59,7 +83,7 @@ input:focus,
 button:focus,
 input[type="submit"]:focus {
   outline: none;
-  border: 1px solid #3d211b;
+  border: 1px solid var(--accent-color);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05),
     inset 0 1px 0 0 rgba(255, 255, 255, 0.45),
     inset 0 -1px 0 0 rgba(255, 255, 255, 0.15),
@@ -73,13 +97,15 @@ input[type="submit"]:focus {
   padding: 0.125em 0.25em;
   background: transparent;
   border: 1px solid transparent;
+  color: currentColor;
   font-size: large;
 }
 
+.info:focus,
 .toggle:focus {
-  border: 1px solid #715344;
+  border: 1px solid var(--accent-color);
   box-shadow: none;
-  color: #715344;
+  color: var(--accent-color);
 }
 
 input:disabled {
@@ -89,14 +115,10 @@ input:disabled {
 
 button,
 input[type="submit"] {
-  background-image: linear-gradient(
-    to bottom,
-    transparent,
-    transparent 50%,
-    rgba(0, 0, 0, 0.04)
-  );
+  background: var(--button-bg);
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 3px;
+  color: currentColor;
   outline: none;
 }
 

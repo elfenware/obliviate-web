@@ -167,7 +167,7 @@
   .derived {
     background: transparent;
     border: none;
-    color: #333;
+    color: var(--fg-color);
     margin: 0;
     padding-left: 0;
     font-weight: bold;
