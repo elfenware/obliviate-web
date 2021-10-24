@@ -3,6 +3,7 @@
   import pbkdf2Hmac from "pbkdf2-hmac";
   import Footer from "./Footer.svelte";
   import Header from "./Header.svelte";
+  import InfoModal from "./InfoModal.svelte";
 
   let site = "";
   let cipher = "";
@@ -10,6 +11,7 @@
   let copyButtonText = "Copy";
   let showCipher = false;
   let showDerivedPassword = false;
+  let showInfoModal = false;
 
   const allowedCharacters = [
     "0",
@@ -175,7 +177,11 @@
 </style>
 
 <main>
-  <Header />
+  <Header
+    on:info={() => {
+      showInfoModal = true;
+    }} />
+
   <article>
     <label for="site">Site:</label>
 
@@ -239,5 +245,12 @@
       disabled={!derivedPassword}
       on:click={handleCopy}>{copyButtonText}</button>
   </article>
+
   <Footer />
 </main>
+
+<InfoModal
+  isOpen={showInfoModal}
+  on:close={() => {
+    showInfoModal = false;
+  }} />

@@ -1,3 +1,9 @@
+<script>
+  import { createEventDispatcher } from "svelte";
+
+  const dispatch = createEventDispatcher();
+</script>
+
 <style>
   header {
     grid-column: 2;
@@ -31,9 +37,10 @@
   <h1>Obliviate</h1>
   <p class="subtitle">
     A password manager that forgets your passwords (<a
-      href="https://github.com/elfenware/obliviate-web#readme"
-      target="_blank"
-      rel="noopener noreferrer">Wut?</a>)
+      href="#info"
+      on:click|preventDefault={() => {
+        dispatch('info');
+      }}>Wut?</a>)
   </p>
   <img src="logo.svg" alt="Obliviate logo" width="48" height="48" />
 </header>
