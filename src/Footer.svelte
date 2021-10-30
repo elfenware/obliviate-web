@@ -1,10 +1,9 @@
 <style>
   footer {
-    grid-column: 2;
+    margin-block-start: auto;
     display: grid;
-    grid-template-columns: 5rem auto 1rem;
+    grid-template-columns: var(--columns);
     column-gap: 0.5rem;
-    margin-top: 4rem;
     font-size: small;
   }
 
