@@ -9,6 +9,7 @@
   let cipher = "";
   let derivedPassword = "";
   let copyButtonText = "Copy";
+  let copyWithoutSymbolsText = "Copy without symbols";
   let showCipher = false;
   let showDerivedPassword = false;
   let showInfoModal = false;
@@ -130,6 +131,14 @@
       copyButtonText = "Copy";
     }, 1000);
   }
+
+  function handleCopyWithoutSymbols() {
+    copy(derivedPassword.replaceAll(/[^0-9a-z]/ig, ""));
+    copyWithoutSymbolsText = "Copied!";
+    setTimeout(() => {
+      copyWithoutSymbolsText = "Copy without symbols";
+    }, 1000);
+  }
 </script>
 
 <style>
@@ -244,6 +253,10 @@
     <button
       disabled={!derivedPassword}
       on:click={handleCopy}>{copyButtonText}</button>
+
+    <button
+      disabled={!derivedPassword}
+      on:click={handleCopyWithoutSymbols}>{copyWithoutSymbolsText}</button>
   </article>
 
   <Footer />
