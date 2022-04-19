@@ -143,18 +143,19 @@
 
 <style>
   main {
-    display: grid;
-    grid-template-columns:
-      minmax(1.2rem, 1fr)
-      minmax(auto, 24rem)
-      minmax(1.2rem, 1fr);
-    grid-template-rows: auto 1fr auto;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    max-width: 600px;
+    margin: auto;
+    padding: 16px;
   }
 
   article {
     grid-column: 2;
     display: grid;
-    grid-template-columns: 5rem auto 2rem;
+    grid-template-columns: var(--columns);
     column-gap: 0.5rem;
     align-items: center;
   }
@@ -177,10 +178,10 @@
 
   .derived {
     background: transparent;
-    border: none;
+    border: dashed;
     color: var(--fg-color);
-    margin: 0;
-    padding-left: 0;
+    margin: 12px 0;
+    font-size: 1.5rem;
     font-weight: bold;
   }
 </style>

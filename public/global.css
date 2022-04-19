@@ -11,6 +11,8 @@
     transparent 50%,
     rgba(0 0 0 0.04)
   );
+
+  --columns: 96px auto 32px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -30,6 +32,10 @@
   }
 }
 
+* {
+  box-sizing: border-box;
+}
+
 html,
 body {
   position: relative;
@@ -41,9 +47,8 @@ body {
   background: var(--bg-color);
   color: var(--fg-color);
   margin: 0;
-  box-sizing: border-box;
   font-family: "Inter", sans-serif;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 a {

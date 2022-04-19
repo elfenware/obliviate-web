@@ -8,7 +8,7 @@
   header {
     grid-column: 2;
     display: grid;
-    grid-template-columns: 5rem auto 2rem;
+    grid-template-columns: var(--columns);
     column-gap: 0.5rem;
     margin: 1rem 0 2.5rem;
   }
