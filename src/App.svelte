@@ -159,17 +159,15 @@
       oninput={handleDerive}
     />
 
-    <button class="info" tabindex="-1">
+    <button aria-label="Info" class="info" tabindex="-1">
       <i
         class="ri-information-line"
         title="Site is not case-sensitive. “GitHub” equals “github”."
-        aria-label="Site is not case-sensitive. “GitHub” equals “github”."
       ></i>
     </button>
 
     <label for="cipher">Cipher key:</label>
 
-    <!-- Svelte won't allow bind:value when type is dynamic. -->
     <input
       type={showCipher ? "text" : "password"}
       id="cipher"
@@ -182,6 +180,7 @@
     />
 
     <button
+      aria-label="Show/hide cipher key"
       class="toggle"
       disabled={!cipher}
       onclick={() => (showCipher = !showCipher)}
@@ -189,7 +188,6 @@
       <i
         class={showCipher ? "ri-eye-line" : "ri-eye-off-line"}
         title="Show/hide cipher key"
-        aria-label="Show/hide cipher key"
       ></i>
     </button>
 
@@ -204,6 +202,7 @@
     />
 
     <button
+      aria-label="Show/hide password"
       class="toggle"
       disabled={!derivedPassword}
       onclick={() => (showDerivedPassword = !showDerivedPassword)}
@@ -211,7 +210,6 @@
       <i
         class={showDerivedPassword ? "ri-eye-line" : "ri-eye-off-line"}
         title="Show/hide password"
-        aria-label="Show/hide password"
       ></i>
     </button>
 
