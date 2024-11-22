@@ -1,7 +1,10 @@
 <script>
+  import { createBubbler, stopPropagation } from 'svelte/legacy';
+
+  const bubble = createBubbler();
   import { createEventDispatcher } from "svelte";
 
-  export let isOpen;
+  let { isOpen } = $props();
 
   const dispatch = createEventDispatcher();
 
@@ -55,8 +58,8 @@
 </style>
 
 {#if isOpen}
-  <div class="modal-wrapper" on:click={handleClose}>
-    <div class="modal" on:click|stopPropagation>
+  <div class="modal-wrapper" onclick={handleClose}>
+    <div class="modal" onclick={stopPropagation(bubble('click'))}>
       <h1>What is Obliviate?</h1>
       <p>
         Obliviate does not store your passwords, but gives them to you when you
@@ -76,7 +79,7 @@
         Obliviate will derive the same password as before.
       </p>
       <p>It’s not magic, but it’s quite close.</p>
-      <button class="close-button" on:click={handleClose}>&times;</button>
+      <button class="close-button" onclick={handleClose}>&times;</button>
     </div>
   </div>
 {/if}

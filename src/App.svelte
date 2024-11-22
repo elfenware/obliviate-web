@@ -5,14 +5,14 @@
   import Header from "./Header.svelte";
   import InfoModal from "./InfoModal.svelte";
 
-  let site = "";
-  let cipher = "";
-  let derivedPassword = "";
-  let copyButtonText = "Copy";
-  let copyWithoutSymbolsText = "Copy without symbols";
-  let showCipher = false;
-  let showDerivedPassword = false;
-  let showInfoModal = false;
+  let site = $state("");
+  let cipher = $state("");
+  let derivedPassword = $state("");
+  let copyButtonText = $state("Copy");
+  let copyWithoutSymbolsText = $state("Copy without symbols");
+  let showCipher = $state(false);
+  let showDerivedPassword = $state(false);
+  let showInfoModal = $state(false);
 
   const allowedCharacters = [
     "0",
@@ -199,13 +199,13 @@
       id="site"
       placeholder="GitHub"
       bind:value={site}
-      on:input={handleDerive} />
+      oninput={handleDerive} />
 
     <button class="info" tabindex="-1">
       <i
         class="ri-information-line"
         title="Site is not case-sensitive. “GitHub” equals “github”."
-        aria-label="Site is not case-sensitive. “GitHub” equals “github”." />
+        aria-label="Site is not case-sensitive. “GitHub” equals “github”."></i>
     </button>
 
     <label for="cipher">Cipher key:</label>
@@ -216,7 +216,7 @@
       id="cipher"
       placeholder="correct horse battery staple"
       value={cipher}
-      on:input={(e) => {
+      oninput={(e) => {
         cipher = e.target.value;
         handleDerive();
       }} />
@@ -224,11 +224,11 @@
     <button
       class="toggle"
       disabled={!cipher}
-      on:click={() => (showCipher = !showCipher)}>
+      onclick={() => (showCipher = !showCipher)}>
       <i
         class={showCipher ? 'ri-eye-line' : 'ri-eye-off-line'}
         title="Show/hide cipher key"
-        aria-label="Show/hide cipher key" />
+        aria-label="Show/hide cipher key"></i>
     </button>
 
     <label for="derived-password">Password:</label>
@@ -243,20 +243,20 @@
     <button
       class="toggle"
       disabled={!derivedPassword}
-      on:click={() => (showDerivedPassword = !showDerivedPassword)}>
+      onclick={() => (showDerivedPassword = !showDerivedPassword)}>
       <i
         class={showDerivedPassword ? 'ri-eye-line' : 'ri-eye-off-line'}
         title="Show/hide password"
-        aria-label="Show/hide password" />
+        aria-label="Show/hide password"></i>
     </button>
 
     <button
       disabled={!derivedPassword}
-      on:click={handleCopy}>{copyButtonText}</button>
+      onclick={handleCopy}>{copyButtonText}</button>
 
     <button
       disabled={!derivedPassword}
-      on:click={handleCopyWithoutSymbols}>{copyWithoutSymbolsText}</button>
+      onclick={handleCopyWithoutSymbols}>{copyWithoutSymbolsText}</button>
   </article>
 
   <Footer />

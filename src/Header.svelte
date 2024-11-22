@@ -1,4 +1,6 @@
 <script>
+  import { preventDefault } from 'svelte/legacy';
+
   import { createEventDispatcher } from "svelte";
 
   const dispatch = createEventDispatcher();
@@ -38,9 +40,9 @@
   <p class="subtitle">
     A password manager that forgets your passwords (<a
       href="#info"
-      on:click|preventDefault={() => {
+      onclick={preventDefault(() => {
         dispatch('info');
-      }}>Wut?</a>)
+      })}>Wut?</a>)
   </p>
   <img src="logo.svg" alt="Obliviate logo" width="48" height="48" />
 </header>
