@@ -1,5 +1,5 @@
 <script>
-  import { createBubbler, stopPropagation } from 'svelte/legacy';
+  import { createBubbler, stopPropagation } from "svelte/legacy";
 
   const bubble = createBubbler();
   import { createEventDispatcher } from "svelte";
@@ -12,6 +12,33 @@
     dispatch("close");
   };
 </script>
+
+{#if isOpen}
+  <div class="modal-wrapper" onclick={handleClose}>
+    <div class="modal" onclick={stopPropagation(bubble("click"))}>
+      <h1>What is Obliviate?</h1>
+      <p>
+        Obliviate does not store your passwords, but gives them to you when you
+        need them. How?
+      </p>
+      <p>It asks you for two things:</p>
+      <ul>
+        <li>the site you want to log in to</li>
+        <li>a cipher key, which is any passphrase you can remember</li>
+      </ul>
+      <p>
+        Using these, it will derive a password, which you can set as your new
+        password for that site.
+      </p>
+      <p>
+        The next time you need it, enter the same site and same cipher key.
+        Obliviate will derive the same password as before.
+      </p>
+      <p>It’s not magic, but it’s quite close.</p>
+      <button class="close-button" onclick={handleClose}>&times;</button>
+    </div>
+  </div>
+{/if}
 
 <style>
   .modal-wrapper {
@@ -56,30 +83,3 @@
     padding-bottom: 10px;
   }
 </style>
-
-{#if isOpen}
-  <div class="modal-wrapper" onclick={handleClose}>
-    <div class="modal" onclick={stopPropagation(bubble('click'))}>
-      <h1>What is Obliviate?</h1>
-      <p>
-        Obliviate does not store your passwords, but gives them to you when you
-        need them. How?
-      </p>
-      <p>It asks you for two things:</p>
-      <ul>
-        <li>the site you want to log in to</li>
-        <li>a cipher key, which is any passphrase you can remember</li>
-      </ul>
-      <p>
-        Using these, it will derive a password, which you can set as your new
-        password for that site.
-      </p>
-      <p>
-        The next time you need it, enter the same site and same cipher key.
-        Obliviate will derive the same password as before.
-      </p>
-      <p>It’s not magic, but it’s quite close.</p>
-      <button class="close-button" onclick={handleClose}>&times;</button>
-    </div>
-  </div>
-{/if}

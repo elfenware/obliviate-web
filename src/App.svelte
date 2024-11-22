@@ -112,11 +112,11 @@
       cipher,
       site.toLowerCase(),
       10000,
-      16
+      16,
     );
 
     const indices = new Uint8Array(derivedBuffer).map(
-      (byte) => byte % allowedCharacters.length
+      (byte) => byte % allowedCharacters.length,
     );
 
     derivedPassword = Array.from(indices)
@@ -133,13 +133,106 @@
   }
 
   function handleCopyWithoutSymbols() {
-    copy(derivedPassword.replaceAll(/[^0-9a-z]/ig, ""));
+    copy(derivedPassword.replaceAll(/[^0-9a-z]/gi, ""));
     copyWithoutSymbolsText = "Copied!";
     setTimeout(() => {
       copyWithoutSymbolsText = "Copy without symbols";
     }, 1000);
   }
 </script>
+
+<main>
+  <Header
+    on:info={() => {
+      showInfoModal = true;
+    }}
+  />
+
+  <article>
+    <label for="site">Site:</label>
+
+    <input
+      type="text"
+      id="site"
+      placeholder="GitHub"
+      bind:value={site}
+      oninput={handleDerive}
+    />
+
+    <button class="info" tabindex="-1">
+      <i
+        class="ri-information-line"
+        title="Site is not case-sensitive. “GitHub” equals “github”."
+        aria-label="Site is not case-sensitive. “GitHub” equals “github”."
+      ></i>
+    </button>
+
+    <label for="cipher">Cipher key:</label>
+
+    <!-- Svelte won't allow bind:value when type is dynamic. -->
+    <input
+      type={showCipher ? "text" : "password"}
+      id="cipher"
+      placeholder="correct horse battery staple"
+      value={cipher}
+      oninput={(e) => {
+        cipher = e.target.value;
+        handleDerive();
+      }}
+    />
+
+    <button
+      class="toggle"
+      disabled={!cipher}
+      onclick={() => (showCipher = !showCipher)}
+    >
+      <i
+        class={showCipher ? "ri-eye-line" : "ri-eye-off-line"}
+        title="Show/hide cipher key"
+        aria-label="Show/hide cipher key"
+      ></i>
+    </button>
+
+    <label for="derived-password">Password:</label>
+
+    <input
+      disabled
+      type={showDerivedPassword ? "text" : "password"}
+      id="derived-password"
+      value={derivedPassword}
+      class="derived"
+    />
+
+    <button
+      class="toggle"
+      disabled={!derivedPassword}
+      onclick={() => (showDerivedPassword = !showDerivedPassword)}
+    >
+      <i
+        class={showDerivedPassword ? "ri-eye-line" : "ri-eye-off-line"}
+        title="Show/hide password"
+        aria-label="Show/hide password"
+      ></i>
+    </button>
+
+    <button disabled={!derivedPassword} onclick={handleCopy}
+      >{copyButtonText}</button
+    >
+
+    <button disabled={!derivedPassword} onclick={handleCopyWithoutSymbols}
+      >{copyWithoutSymbolsText}</button
+    >
+  </article>
+
+  <Footer />
+</main>
+
+<InfoModal
+  isOpen={showInfoModal}
+  on:close={() => {
+    showInfoModal = false;
+  }}
+/>
 
 <style>
   main {
@@ -184,86 +277,3 @@
     font-weight: bold;
   }
 </style>
-
-<main>
-  <Header
-    on:info={() => {
-      showInfoModal = true;
-    }} />
-
-  <article>
-    <label for="site">Site:</label>
-
-    <input
-      type="text"
-      id="site"
-      placeholder="GitHub"
-      bind:value={site}
-      oninput={handleDerive} />
-
-    <button class="info" tabindex="-1">
-      <i
-        class="ri-information-line"
-        title="Site is not case-sensitive. “GitHub” equals “github”."
-        aria-label="Site is not case-sensitive. “GitHub” equals “github”."></i>
-    </button>
-
-    <label for="cipher">Cipher key:</label>
-
-    <!-- Svelte won't allow bind:value when type is dynamic. -->
-    <input
-      type={showCipher ? 'text' : 'password'}
-      id="cipher"
-      placeholder="correct horse battery staple"
-      value={cipher}
-      oninput={(e) => {
-        cipher = e.target.value;
-        handleDerive();
-      }} />
-
-    <button
-      class="toggle"
-      disabled={!cipher}
-      onclick={() => (showCipher = !showCipher)}>
-      <i
-        class={showCipher ? 'ri-eye-line' : 'ri-eye-off-line'}
-        title="Show/hide cipher key"
-        aria-label="Show/hide cipher key"></i>
-    </button>
-
-    <label for="derived-password">Password:</label>
-
-    <input
-      disabled
-      type={showDerivedPassword ? 'text' : 'password'}
-      id="derived-password"
-      value={derivedPassword}
-      class="derived" />
-
-    <button
-      class="toggle"
-      disabled={!derivedPassword}
-      onclick={() => (showDerivedPassword = !showDerivedPassword)}>
-      <i
-        class={showDerivedPassword ? 'ri-eye-line' : 'ri-eye-off-line'}
-        title="Show/hide password"
-        aria-label="Show/hide password"></i>
-    </button>
-
-    <button
-      disabled={!derivedPassword}
-      onclick={handleCopy}>{copyButtonText}</button>
-
-    <button
-      disabled={!derivedPassword}
-      onclick={handleCopyWithoutSymbols}>{copyWithoutSymbolsText}</button>
-  </article>
-
-  <Footer />
-</main>
-
-<InfoModal
-  isOpen={showInfoModal}
-  on:close={() => {
-    showInfoModal = false;
-  }} />

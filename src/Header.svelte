@@ -1,10 +1,23 @@
 <script>
-  import { preventDefault } from 'svelte/legacy';
+  import { preventDefault } from "svelte/legacy";
 
   import { createEventDispatcher } from "svelte";
 
   const dispatch = createEventDispatcher();
 </script>
+
+<header>
+  <h1>Obliviate</h1>
+  <p class="subtitle">
+    A password manager that forgets your passwords (<a
+      href="#info"
+      onclick={preventDefault(() => {
+        dispatch("info");
+      })}>Wut?</a
+    >)
+  </p>
+  <img src="logo.svg" alt="Obliviate logo" width="48" height="48" />
+</header>
 
 <style>
   header {
@@ -34,15 +47,3 @@
     justify-self: end;
   }
 </style>
-
-<header>
-  <h1>Obliviate</h1>
-  <p class="subtitle">
-    A password manager that forgets your passwords (<a
-      href="#info"
-      onclick={preventDefault(() => {
-        dispatch('info');
-      })}>Wut?</a>)
-  </p>
-  <img src="logo.svg" alt="Obliviate logo" width="48" height="48" />
-</header>
